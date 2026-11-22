@@ -2,7 +2,15 @@ const canvas=document.getElementById('poster'),ctx=canvas.getContext('2d');
 const fields=['business','headline','offer','contact'];let template='sale',palette='sunset';
 const palettes={sunset:['#7155e8','#ffbd4a','#241b36','#fff8e9'],ocean:['#173c65','#55c8d9','#f5fbff','#c6f3f5'],berry:['#7e285d','#ff8eae','#fff3f7','#ffd0df'],forest:['#245343','#b5d69b','#f5f8ed','#dcebc9'],mono:['#222222','#eeeeee','#ffffff','#d7d7d7']};
 const val=id=>document.getElementById(id).value.trim();
-function rounded(x,y,w,h,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
+function rounded(x,y,w,h,r,color){
+ ctx.fillStyle=color;ctx.beginPath();
+ const radius=Math.min(r,w/2,h/2);
+ ctx.moveTo(x+radius,y);ctx.lineTo(x+w-radius,y);ctx.arcTo(x+w,y,x+w,y+radius,radius);
+ ctx.lineTo(x+w,y+h-radius);ctx.arcTo(x+w,y+h,x+w-radius,y+h,radius);
+ ctx.lineTo(x+radius,y+h);ctx.arcTo(x,y+h,x,y+h-radius,radius);
+ ctx.lineTo(x,y+radius);ctx.arcTo(x,y,x+radius,y,radius);
+ ctx.closePath();ctx.fill();
+}
 function draw(){
  const [bg,accent,ink,pale]=palettes[palette],business=val('business')||'YOUR BUSINESS',headline=val('headline')||'YOUR HEADLINE',offer=val('offer')||'YOUR OFFER',contact=val('contact')||'CONTACT US';
  ctx.clearRect(0,0,1080,1350);ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
@@ -85,6 +93,6 @@ function wrap(text,x,y,maxWidth,lineHeight,centered=false){const words=text.spli
 fields.forEach(id=>document.getElementById(id).addEventListener('input',draw));
 document.querySelectorAll('.template').forEach(b=>b.addEventListener('click',()=>{template=b.dataset.template;document.querySelectorAll('.template').forEach(x=>x.classList.toggle('active',x===b));draw()}));
 document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{palette=b.dataset.color;document.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('selected',x===b));draw()}));
-document.getElementById('downloadBtn').addEventListener('click',()=>{const a=document.createElement('a');a.download='postermaker-'+(val('business')||'poster').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';a.href=canvas.toDataURL('image/png');a.click()});
+document.getElementById('downloadBtn').addEventListener('click',()=>{draw();const a=document.createElement('a');a.download='postermaker-'+(val('business')||'poster').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';a.href=canvas.toDataURL('image/png');a.click()});
 document.getElementById('shareBtn').addEventListener('click',async()=>{canvas.toBlob(async blob=>{const file=new File([blob],'poster.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){try{await navigator.share({files:[file],title:'My poster'})}catch(e){}}else{document.getElementById('downloadBtn').click();alert('Poster downloaded. You can now share it from your gallery.')}},'image/png')});
 draw();
