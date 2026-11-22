@@ -1,28 +1,35 @@
-# PosterMaker AI — Premium Studio
+# PosterMaker AI Studio
 
-A responsive poster design workspace for creators and small businesses.
+A responsive browser-based poster editor for creating promotional designs.
 
-## Features
-- Premium dark SaaS dashboard with Poppins typography
-- Six art-directed poster templates and five color systems
-- Live 1080px canvas rendering and high-resolution PNG export
-- Editable text and shape layers with drag-to-position controls
-- Font, size, color, alignment and position properties
-- Image upload, canvas grid, zoom and canvas size presets
-- AI-assisted campaign copy and layout direction through a secure Vercel API route
-- Responsive desktop, tablet and mobile layout
+## Current features
+- Premium Poppins-based dark studio interface
+- Six editable poster starting layouts
+- Editable text layers, font size, weight and colour
+- Add heading and subheading layers
+- Upload PNG, JPG and WEBP images
+- Drag text, shape and image layers on the canvas
+- Layer selection and deletion
+- Canvas background and preset palettes
+- Portrait, square and story canvas sizes
+- High-resolution PNG export
+- Browser-local editing; no account required
 
 ## Run locally
-Open `index.html` for the editor preview. To test the AI route locally, install the Vercel CLI and run `vercel dev`.
+Open `index.html` in a modern browser or serve this folder with a static web server.
 
-## AI setup
-Set `OPENAI_API_KEY` as an Environment Variable in Vercel Project Settings. The key is used only by `/api/generate` on the server and is never exposed in browser code. AI generation requires an API key and provider usage may incur charges.
+## Deploy on Vercel
+1. Import this GitHub repository into Vercel.
+2. Select the framework preset **Other**.
+3. Leave Build Command and Output Directory empty (static site).
+4. Deploy.
 
-## Deploy to Vercel
-1. Import `businesshqdesk/PosterMakerAI` from GitHub in Vercel.
-2. Keep Framework Preset as Other and Root Directory as `./`.
-3. Add `OPENAI_API_KEY` in Project Settings → Environment Variables to enable AI generation.
-4. Deploy. Redeploy after changing environment variables.
+## Important
+The AI generation panel is currently a clearly marked integration placeholder. Actual AI image generation requires an image-generation provider and a server-side API key. Do not put secret API keys in browser JavaScript.
 
-## Notes
-PNG rendering and editing run in the browser. AI generation is optional; templates and the editor work without an API key.
+## Roadmap
+- Undo/redo and project persistence
+- Background removal and image crop tools
+- More professionally art-directed templates
+- Secure AI generation API integration
+- Automated browser and mobile testing
