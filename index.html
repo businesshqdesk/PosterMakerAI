@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Create beautiful business promotional posters for free with PosterMaker AI.">
+<title>PosterMaker AI — Create Your Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">✦</span> PosterMaker <b>AI</b></a>
+  <nav><a href="#templates">Templates</a><a href="#editor">Poster Studio</a></nav>
+  <a class="top-cta" href="#editor">Create free <span>↗</span></a>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> YOUR CREATIVE STUDIO</div>
+    <h1>Make your business<br> <span>impossible to ignore.</span></h1>
+    <p>Create scroll-stopping promotional posters for your business in minutes. No design skills needed.</p>
+    <a class="primary-btn" href="#editor">Start designing <span>→</span></a>
+    <div class="hero-note"><span>✓</span> Free to use &nbsp; <span>✓</span> Instant PNG download</div>
+  </div>
+  <div class="hero-art">
+    <div class="float-card float-one"><span>✦</span> Made for your brand</div>
+    <div class="poster-stack back-poster"><div>BIG<br>SALE</div><small>THIS WEEK ONLY</small></div>
+    <div class="poster-stack front-poster"><div class="poster-sun">✳</div><small>YOUR BUSINESS</small><strong>MAKE<br>IT <i>HAPPEN.</i></strong><label>UP TO 50% OFF</label><div class="poster-foot">SHOP NOW ↗</div></div>
+    <div class="float-card float-two">✧ &nbsp; Design. Download. Share.</div>
+  </div>
+</section>
+<section class="features"><div><b>✧</b><span>Ready-made templates</span></div><div><b>◈</b><span>Live poster preview</span></div><div><b>↧</b><span>High-quality PNG</span></div><div><b>♡</b><span>Made for small business</span></div></section>
+<section class="studio" id="editor">
+  <div class="section-heading"><div><div class="eyebrow">THE POSTER STUDIO</div><h2>Your idea. Your poster.</h2></div><p>Customize the details and watch your design come to life.</p></div>
+  <div class="workspace">
+    <aside class="controls">
+      <div class="control-title"><span>01</span> Choose a style</div>
+      <div class="template-grid" id="templateGrid">
+        <button class="template active" data-template="sale"><span class="thumb sale-thumb">BIG<br>SALE</span><small>Bold Sale</small></button>
+        <button class="template" data-template="food"><span class="thumb food-thumb">TASTY<br>DEAL</span><small>Food Offer</small></button>
+        <button class="template" data-template="fashion"><span class="thumb fashion-thumb">NEW<br>DROP</span><small>Fashion</small></button>
+        <button class="template" data-template="event"><span class="thumb event-thumb">YOU’RE<br>INVITED</span><small>Event</small></button>
+        <button class="template" data-template="minimal"><span class="thumb minimal-thumb">LESS<br>IS MORE</span><small>Minimal</small></button>
+      </div>
+      <div class="control-title"><span>02</span> Add your details</div>
+      <label>Business name<input id="business" maxlength="32" value="YOUR BUSINESS" placeholder="e.g. Sharma Store"></label>
+      <label>Main headline<input id="headline" maxlength="38" value="BIG SALE" placeholder="e.g. Summer Sale"></label>
+      <label>Offer / subtitle<input id="offer" maxlength="42" value="UP TO 50% OFF" placeholder="e.g. Buy 1 Get 1"></label>
+      <label>Contact / website<input id="contact" maxlength="34" value="VISIT US TODAY" placeholder="Phone or website"></label>
+      <div class="control-title"><span>03</span> Pick your colors</div>
+      <div class="colors">
+        <button class="swatch selected" data-color="sunset" aria-label="Sunset colors"></button>
+        <button class="swatch" data-color="ocean" aria-label="Ocean colors"></button>
+        <button class="swatch" data-color="berry" aria-label="Berry colors"></button>
+        <button class="swatch" data-color="forest" aria-label="Forest colors"></button>
+        <button class="swatch" data-color="mono" aria-label="Monochrome colors"></button>
+      </div>
+      <button class="download-btn" id="downloadBtn">↓ &nbsp; Download poster PNG</button>
+      <p class="privacy-note">Your design is created in your browser. No account needed.</p>
+    </aside>
+    <div class="preview-area">
+      <div class="preview-top"><span><i></i> LIVE PREVIEW</span><span>1080 × 1350 px</span></div>
+      <div class="canvas-wrap"><canvas id="poster" width="1080" height="1350" aria-label="Live poster preview"></canvas></div>
+      <div class="preview-bottom"><span>✦ Your next great promotion starts here.</span><button id="shareBtn">Share ↗</button></div>
+    </div>
+  </div>
+</section>
+<section class="closing"><div class="eyebrow">READY WHEN YOU ARE</div><h2>Good design gets<br><span>good things noticed.</span></h2><a class="primary-btn" href="#editor">Create your poster →</a></section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-mark">✦</span> PosterMaker <b>AI</b></a><span>Made for ambitious small businesses.</span><span>© 2026 PosterMaker AI</span></footer>
+<script src="script.js"></script>
+</body></html>
