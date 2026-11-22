@@ -1,25 +1,28 @@
-# PosterMaker AI
+# PosterMaker AI — Premium Studio
 
-A responsive, browser-based poster builder for small businesses.
+A responsive poster design workspace for creators and small businesses.
 
 ## Features
-- Five poster templates: Bold Sale, Food Offer, Fashion, Event and Minimal
-- Live editable business name, headline, offer and contact fields
-- Five color palettes
-- PNG export at 1080 × 1350
-- Share support on compatible mobile browsers
-- No account, backend or API key required
+- Premium dark SaaS dashboard with Poppins typography
+- Six art-directed poster templates and five color systems
+- Live 1080px canvas rendering and high-resolution PNG export
+- Editable text and shape layers with drag-to-position controls
+- Font, size, color, alignment and position properties
+- Image upload, canvas grid, zoom and canvas size presets
+- AI-assisted campaign copy and layout direction through a secure Vercel API route
+- Responsive desktop, tablet and mobile layout
 
 ## Run locally
-Open `index.html` in a modern browser.
+Open `index.html` for the editor preview. To test the AI route locally, install the Vercel CLI and run `vercel dev`.
 
-## Deploy on GitHub Pages
-1. Open **Settings → Pages**.
-2. Under Build and deployment, select **Deploy from a branch**.
-3. Select `main` and `/ (root)`, then Save.
-4. Wait for GitHub Pages to publish the site.
+## AI setup
+Set `OPENAI_API_KEY` as an Environment Variable in Vercel Project Settings. The key is used only by `/api/generate` on the server and is never exposed in browser code. AI generation requires an API key and provider usage may incur charges.
 
-The website is static and can be hosted free on GitHub Pages. Google Fonts requires an internet connection; the app itself works without a backend.
+## Deploy to Vercel
+1. Import `businesshqdesk/PosterMakerAI` from GitHub in Vercel.
+2. Keep Framework Preset as Other and Root Directory as `./`.
+3. Add `OPENAI_API_KEY` in Project Settings → Environment Variables to enable AI generation.
+4. Deploy. Redeploy after changing environment variables.
 
-## License
-MIT
+## Notes
+PNG rendering and editing run in the browser. AI generation is optional; templates and the editor work without an API key.
