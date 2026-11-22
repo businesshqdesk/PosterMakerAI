@@ -1,98 +1,51 @@
-const canvas=document.getElementById('poster'),ctx=canvas.getContext('2d');
-const fields=['business','headline','offer','contact'];let template='sale',palette='sunset';
-const palettes={sunset:['#7155e8','#ffbd4a','#241b36','#fff8e9'],ocean:['#173c65','#55c8d9','#f5fbff','#c6f3f5'],berry:['#7e285d','#ff8eae','#fff3f7','#ffd0df'],forest:['#245343','#b5d69b','#f5f8ed','#dcebc9'],mono:['#222222','#eeeeee','#ffffff','#d7d7d7']};
-const val=id=>document.getElementById(id).value.trim();
-function rounded(x,y,w,h,r,color){
- ctx.fillStyle=color;ctx.beginPath();
- const radius=Math.min(r,w/2,h/2);
- ctx.moveTo(x+radius,y);ctx.lineTo(x+w-radius,y);ctx.arcTo(x+w,y,x+w,y+radius,radius);
- ctx.lineTo(x+w,y+h-radius);ctx.arcTo(x+w,y+h,x+w-radius,y+h,radius);
- ctx.lineTo(x+radius,y+h);ctx.arcTo(x,y+h,x,y+h-radius,radius);
- ctx.lineTo(x,y+radius);ctx.arcTo(x,y,x+radius,y,radius);
- ctx.closePath();ctx.fill();
-}
-function draw(){
- const [bg,accent,ink,pale]=palettes[palette],business=val('business')||'YOUR BUSINESS',headline=val('headline')||'YOUR HEADLINE',offer=val('offer')||'YOUR OFFER',contact=val('contact')||'CONTACT US';
- ctx.clearRect(0,0,1080,1350);ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
- if(template==='sale'){
-  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(930,160,300,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=ink;ctx.font='700 28px Arial';ctx.fillText(business.toUpperCase(),75,105);
-  ctx.fillStyle=pale;ctx.font='900 138px Arial';wrap(headline.toUpperCase(),75,420,900,145);
-  rounded(75,1030,660,115,16,accent);ctx.fillStyle=ink;ctx.font='800 43px Arial';ctx.fillText(offer.toUpperCase(),110,1102);
-  ctx.fillStyle=pale;ctx.font='700 25px Arial';ctx.fillText(contact.toUpperCase(),75,1240);
- }else if(template==='food'){
-  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(540,690,410,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=pale;ctx.font='800 28px Arial';center(business.toUpperCase(),115);
-  ctx.font='900 110px Arial';wrap(headline.toUpperCase(),170,470,780,120,true);
-  ctx.fillStyle=ink;ctx.font='800 42px Arial';center(offer.toUpperCase(),1090);
-  ctx.font='600 25px Arial';center(contact.toUpperCase(),1240);
- }else if(template==='fashion'){
-  ctx.fillStyle=accent;ctx.fillRect(0,0,1080,1350);ctx.fillStyle=bg;ctx.fillRect(55,55,970,1240);
-  ctx.fillStyle=ink;ctx.font='700 25px Arial';ctx.fillText(business.toUpperCase(),105,145);
-  ctx.font='900 130px Arial';wrap(headline.toUpperCase(),105,420,850,145);
-  ctx.fillStyle=bg;ctx.font='800 38px Arial';ctx.fillText(offer.toUpperCase(),105,1050);
-  ctx.font='600 24px Arial';ctx.fillText(contact.toUpperCase(),105,1195);
- }else if(template==='event'){
-  ctx.fillStyle=accent;ctx.beginPath();ctx.arc(540,675,470,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=ink;ctx.font='700 27px Arial';center(business.toUpperCase(),130);
-  ctx.font='900 105px Arial';wrap(headline.toUpperCase(),300,480,800,120,true);
-  ctx.font='700 36px Arial';center(offer.toUpperCase(),1080);
-  ctx.font='600 25px Arial';center(contact.toUpperCase(),1200);
- }else if(template==='arrival'){
-  ctx.fillStyle=accent;ctx.fillRect(0,0,1080,1350);
-  ctx.fillStyle=bg;ctx.beginPath();ctx.arc(540,665,445,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=ink;ctx.font='700 28px Arial';center(business.toUpperCase(),160);
-  ctx.font='900 120px Arial';wrap(headline.toUpperCase(),130,550,820,135,true);
-  ctx.fillStyle=accent;ctx.font='800 40px Arial';center(offer.toUpperCase(),1040);
-  ctx.fillStyle=ink;ctx.font='600 25px Arial';center(contact.toUpperCase(),1190);
- }else if(template==='festival'){
-  ctx.fillStyle=accent;ctx.fillRect(0,0,1080,1350);
-  ctx.fillStyle=bg;ctx.beginPath();ctx.arc(540,630,500,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=ink;ctx.font='700 28px Arial';center(business.toUpperCase(),150);
-  ctx.font='900 112px Arial';wrap(headline.toUpperCase(),120,520,840,125,true);
-  ctx.fillStyle=bg;ctx.font='800 40px Arial';center(offer.toUpperCase(),1030);
-  ctx.fillStyle=ink;ctx.font='600 25px Arial';center(contact.toUpperCase(),1190);
- }else if(template==='property'){
-  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
-  ctx.fillStyle=accent;ctx.fillRect(0,0,1080,500);
-  ctx.fillStyle=pale;ctx.font='700 28px Arial';ctx.fillText(business.toUpperCase(),80,110);
-  ctx.font='900 105px Arial';wrap(headline.toUpperCase(),80,290,900,115);
-  ctx.fillStyle=ink;ctx.font='800 42px Arial';ctx.fillText(offer.toUpperCase(),80,850);
-  ctx.fillStyle=ink;ctx.font='600 28px Arial';ctx.fillText(contact.toUpperCase(),80,1050);
-  ctx.strokeStyle=accent;ctx.lineWidth=8;ctx.strokeRect(55,55,970,1240);
- }else if(template==='beauty'){
-  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
-  ctx.fillStyle=accent;ctx.beginPath();ctx.ellipse(540,620,390,510,0,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle=pale;ctx.font='700 27px Arial';center(business.toUpperCase(),180);
-  ctx.font='900 112px Arial';wrap(headline.toUpperCase(),120,570,840,125,true);
-  ctx.fillStyle=pale;ctx.font='800 38px Arial';center(offer.toUpperCase(),1040);
-  ctx.font='600 25px Arial';center(contact.toUpperCase(),1190);
- }else if(template==='tech'){
-  ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);
-  ctx.strokeStyle=accent;ctx.lineWidth=5;
-  for(let x=80;x<1080;x+=100){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,1350);ctx.stroke()}
-  for(let y=80;y<1350;y+=100){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(1080,y);ctx.stroke()}
-  ctx.fillStyle=accent;ctx.fillRect(65,65,950,1220);
-  ctx.fillStyle=bg;ctx.font='700 28px Arial';ctx.fillText(business.toUpperCase(),110,155);
-  ctx.font='900 112px Arial';wrap(headline.toUpperCase(),110,500,850,125);
-  ctx.font='800 38px Arial';ctx.fillText(offer.toUpperCase(),110,1030);
-  ctx.font='600 25px Arial';ctx.fillText(contact.toUpperCase(),110,1180);
- }else{
-  ctx.fillStyle=accent;ctx.fillRect(0,0,1080,22);ctx.fillRect(0,1328,1080,22);
-  ctx.fillStyle=ink;ctx.font='700 26px Arial';ctx.fillText(business.toUpperCase(),85,150);
-  ctx.font='900 112px Arial';wrap(headline.toUpperCase(),85,510,900,130);
-  ctx.fillStyle=bg;ctx.fillRect(85,990,650,5);ctx.fillStyle=ink;
-  ctx.font='700 37px Arial';ctx.fillText(offer.toUpperCase(),85,1080);
-  ctx.font='600 25px Arial';ctx.fillText(contact.toUpperCase(),85,1200);
- }
- ctx.fillStyle=template==='sale'||template==='food'||template==='event'?pale:ink;
- ctx.globalAlpha=.65;ctx.font='600 17px Arial';ctx.fillText('DESIGNED WITH POSTERMAKER',75,1305);ctx.globalAlpha=1;
-}
-function center(t,y){ctx.textAlign='center';ctx.fillText(t,540,y);ctx.textAlign='left'}
-function wrap(text,x,y,maxWidth,lineHeight,centered=false){const words=text.split(/\s+/);let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.slice(0,3).forEach((l,i)=>{if(centered)center(l,y+i*lineHeight);else ctx.fillText(l,x,y+i*lineHeight)})}
-fields.forEach(id=>document.getElementById(id).addEventListener('input',draw));
-document.querySelectorAll('.template').forEach(b=>b.addEventListener('click',()=>{template=b.dataset.template;document.querySelectorAll('.template').forEach(x=>x.classList.toggle('active',x===b));draw()}));
-document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{palette=b.dataset.color;document.querySelectorAll('.swatch').forEach(x=>x.classList.toggle('selected',x===b));draw()}));
-document.getElementById('downloadBtn').addEventListener('click',()=>{draw();const a=document.createElement('a');a.download='postermaker-'+(val('business')||'poster').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';a.href=canvas.toDataURL('image/png');a.click()});
-document.getElementById('shareBtn').addEventListener('click',async()=>{canvas.toBlob(async blob=>{const file=new File([blob],'poster.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){try{await navigator.share({files:[file],title:'My poster'})}catch(e){}}else{document.getElementById('downloadBtn').click();alert('Poster downloaded. You can now share it from your gallery.')}},'image/png')});
-draw();
+const canvas=document.getElementById('poster'),ctx=canvas.getContext('2d'),frame=document.getElementById('posterFrame');
+const $=id=>document.getElementById(id);let template='launch',palette='violet',layers=[],selected=-1,drag=null,zoom=1,ratio='portrait',uploadedImage=null;
+const themes={violet:{bg:'#17152b',accent:'#b7a1ff',ink:'#fff9ef',muted:'#bdb4d9'},sunset:{bg:'#f08b54',accent:'#f7d17c',ink:'#321f20',muted:'#613d35'},ocean:{bg:'#173d62',accent:'#68d2d1',ink:'#f4ffff',muted:'#b4dedd'},earth:{bg:'#55463c',accent:'#d4b68b',ink:'#fff5e7',muted:'#d4c4ae'},mono:{bg:'#171717',accent:'#f2f2f2',ink:'#fff',muted:'#bcbcbc'}};
+const presets={launch:['STUDIO NORTH','MAKE YOUR MOVE.','THE NEW COLLECTION IS HERE','DISCOVER MORE ↗'],sale:['YOUR BRAND','BIG SALE!','UP TO 50% OFF','SHOP NOW ↗'],food:['THE DAILY TABLE','GOOD FOOD. GOOD MOOD.','FRESHLY MADE EVERY DAY','ORDER TODAY ↗'],event:['YOUR BRAND','THE BIG EVENT.','A NIGHT TO REMEMBER','SAVE YOUR SPOT ↗'],beauty:['THE BEAUTY EDIT','GLOW LIKE NEVER.','YOUR NEW SELF-CARE RITUAL','SHOP THE EDIT ↗'],tech:['FUTURE LABS','THINK BEYOND.','MEET THE NEXT GENERATION','EXPLORE NOW ↗']};
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function addLayer(type,text,x,y,size,color){layers.push({type,text,x,y,size,color,font:'Poppins',align:'center',width:type==='shape'?260:800,height:type==='shape'?140:150});selected=layers.length-1;draw();syncProperties()}
+function setTemplate(name){template=name;const p=presets[name];['business','headline','offer','contact'].forEach((id,i)=>$(id).value=p[i]);layers=[];const theme=themes[palette];layers.push({type:'text',text:p[0],x:540,y:130,size:28,color:theme.muted,font:'DM Sans',align:'center',width:900});layers.push({type:'text',text:p[1],x:540,y:610,size:105,color:theme.ink,font:'Poppins',align:'center',width:900});layers.push({type:'text',text:p[2],x:540,y:1010,size:30,color:theme.accent,font:'DM Sans',align:'center',width:900});layers.push({type:'text',text:p[3],x:540,y:1215,size:23,color:theme.ink,font:'DM Sans',align:'center',width:900});selected=-1;draw();syncProperties()}
+function draw(){const t=themes[palette],w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.fillStyle=t.bg;ctx.fillRect(0,0,w,h);
+if(template==='launch'){ctx.fillStyle=t.accent;ctx.beginPath();ctx.arc(950,190,350,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffffff12';ctx.fillRect(65,65,950,1220);ctx.strokeStyle='#ffffff30';ctx.lineWidth=2;ctx.strokeRect(65,65,950,1220)}
+if(template==='sale'){ctx.fillStyle=t.accent;ctx.beginPath();ctx.arc(890,250,360,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffffff12';ctx.fillRect(0,900,w,450)}
+if(template==='food'){ctx.fillStyle=t.accent;ctx.beginPath();ctx.arc(540,650,460,0,Math.PI*2);ctx.fill();ctx.fillStyle='#ffffff12';for(let i=0;i<9;i++){ctx.beginPath();ctx.arc(110+i*110,600+(i%2)*80,18,0,7);ctx.fill()}}
+if(template==='event'){ctx.strokeStyle=t.accent;ctx.lineWidth=5;for(let r=180;r<600;r+=65){ctx.beginPath();ctx.arc(540,660,r,0,7);ctx.stroke()}}
+if(template==='beauty'){ctx.fillStyle=t.accent;ctx.beginPath();ctx.ellipse(540,650,380,520,-.18,0,7);ctx.fill();ctx.fillStyle='#ffffff16';ctx.beginPath();ctx.ellipse(540,650,320,460,-.18,0,7);ctx.fill()}
+if(template==='tech'){ctx.strokeStyle=t.accent+'55';ctx.lineWidth=2;for(let x=0;x<w;x+=90){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}for(let y=0;y<h;y+=90){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}ctx.strokeStyle=t.accent;ctx.lineWidth=6;ctx.strokeRect(42,42,w-84,h-84)}
+if(uploadedImage){try{ctx.save();ctx.globalAlpha=.35;ctx.drawImage(uploadedImage,0,0,w,h);ctx.restore()}catch(e){}}
+layers.forEach((l,i)=>{ctx.save();ctx.textAlign=l.align;ctx.textBaseline='middle';if(l.type==='shape'){ctx.fillStyle=l.color;ctx.fillRect(l.x-l.width/2,l.y-l.height/2,l.width,l.height)}else{ctx.fillStyle=l.color;ctx.font='800 '+l.size+'px "'+l.font+'"';const words=l.text.split(/\s+/);let lines=[],line='';for(const word of words){let test=line?line+' '+word:word;if(ctx.measureText(test).width>l.width&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.slice(0,4).forEach((s,j)=>ctx.fillText(s,l.x,l.y+(j-(Math.min(lines.length,4)-1)/2)*l.size*1.08))}ctx.restore()});updateOutline()}
+function updateOutline(){const o=$('selectionOutline');if(selected<0||!layers[selected]){o.style.display='none';return}const l=layers[selected],sx=frame.clientWidth/canvas.width,sy=frame.clientHeight/canvas.height;o.style.display='block';o.style.left=(l.x*sx)+'px';o.style.top=(l.y*sy)+'px';o.style.width=(l.width*sx)+'px';o.style.height=(Math.max(l.height||l.size*1.5,l.size*1.5)*sy)+'px'}
+function syncProperties(){const has=selected>=0&&layers[selected];$('canvasProperties').hidden=!!has;$('objectProperties').hidden=!has;$('selectedType').textContent=has?(layers[selected].type==='shape'?'SHAPE':'TEXT'):'CANVAS';if(!has)return;const l=layers[selected];$('layerText').value=l.text;$('fontFamily').value=l.font;$('fontSize').value=l.size;$('fontSizeLabel').textContent=l.size+' px';$('textColor').value=l.color;$('posX').value=Math.round(l.x);$('posY').value=Math.round(l.y);document.querySelectorAll('[data-align]').forEach(b=>b.classList.toggle('active',b.dataset.align===l.align))}
+function changeSelected(fn){if(selected<0||!layers[selected])return;fn(layers[selected]);draw();syncProperties()}
+function setPalette(p){palette=p;document.querySelectorAll('.palette').forEach(b=>b.classList.toggle('selected',b.dataset.palette===p));draw()}
+document.querySelectorAll('.template-card').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.template-card').forEach(x=>x.classList.toggle('selected',x===b));setTemplate(b.dataset.template);toast('Template applied')}));
+document.querySelectorAll('.palette').forEach(b=>b.addEventListener('click',()=>setPalette(b.dataset.palette)));
+['business','headline','offer','contact'].forEach((id,i)=>$(id).addEventListener('input',()=>{const layer=layers[i];if(layer){layer.text=$(id).value;draw()}}));
+$('addText').onclick=()=>{addLayer('text','YOUR TEXT',540,680,76,themes[palette].ink);toast('Text layer added')};
+$('addShape').onclick=()=>{addLayer('shape','',540,700,80,themes[palette].accent);toast('Shape added')};
+$('imageUpload').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{uploadedImage=new Image();uploadedImage.onload=()=>{draw();toast('Image added to poster')};uploadedImage.src=r.result};r.readAsDataURL(f)};
+$('layerText').oninput=e=>changeSelected(l=>l.text=e.target.value);
+$('fontFamily').onchange=e=>changeSelected(l=>l.font=e.target.value);
+$('fontSize').oninput=e=>{changeSelected(l=>l.size=+e.target.value);$('fontSizeLabel').textContent=e.target.value+' px'};
+$('textColor').oninput=e=>changeSelected(l=>l.color=e.target.value);
+$('posX').onchange=e=>changeSelected(l=>l.x=+e.target.value);$('posY').onchange=e=>changeSelected(l=>l.y=+e.target.value);
+document.querySelectorAll('[data-align]').forEach(b=>b.onclick=()=>changeSelected(l=>l.align=b.dataset.align));
+$('deleteLayer').onclick=()=>{if(selected<0)return;layers.splice(selected,1);selected=-1;draw();syncProperties();toast('Layer deleted')};
+$('bgColor').oninput=e=>{themes[palette].bg=e.target.value;draw()};
+function resizeCanvas(r){ratio=r;canvas.width=1080;canvas.height=r==='square'?1080:r==='story'?1920:1350;frame.style.aspectRatio=canvas.width+'/'+canvas.height;draw();toast('Canvas size updated')}
+$('squareSize').onclick=()=>resizeCanvas('square');$('storySize').onclick=()=>resizeCanvas('story');document.querySelectorAll('.size-pills button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.size-pills button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+$('gridToggle').onclick=()=>$('gridOverlay').classList.toggle('show');
+$('zoomIn').onclick=()=>{zoom=Math.min(1.35,zoom+.1);frame.style.width=(Math.min(390,stage.clientWidth-30)*zoom)+'px';$('zoomValue').textContent=Math.round(zoom*100)+'%'};
+$('zoomOut').onclick=()=>{zoom=Math.max(.55,zoom-.1);frame.style.width=(Math.min(390,stage.clientWidth-30)*zoom)+'px';$('zoomValue').textContent=Math.round(zoom*100)+'%'};
+function coords(e){const r=frame.getBoundingClientRect();return{x:(e.clientX-r.left)/r.width*canvas.width,y:(e.clientY-r.top)/r.height*canvas.height}}
+function hit(p){for(let i=layers.length-1;i>=0;i--){const l=layers[i],hh=Math.max(l.height||l.size*1.5,l.size*1.5);if(p.x>=l.x-l.width/2&&p.x<=l.x+l.width/2&&p.y>=l.y-hh/2&&p.y<=l.y+hh/2)return i}return -1}
+frame.addEventListener('pointerdown',e=>{const p=coords(e),i=hit(p);selected=i;syncProperties();if(i>=0){drag={i,dx:p.x-layers[i].x,dy:p.y-layers[i].y};frame.setPointerCapture(e.pointerId)}draw()});
+frame.addEventListener('pointermove',e=>{if(!drag)return;const p=coords(e),l=layers[drag.i];l.x=Math.max(0,Math.min(canvas.width,p.x-drag.dx));l.y=Math.max(0,Math.min(canvas.height,p.y-drag.dy));draw();$('posX').value=Math.round(l.x);$('posY').value=Math.round(l.y)});
+frame.addEventListener('pointerup',()=>{drag=null;syncProperties()});
+function exportPNG(){draw();const a=document.createElement('a');a.download='postermaker-'+($('business').value||'design').toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.png';a.href=canvas.toDataURL('image/png');a.click();toast('Your high-resolution PNG is ready')}
+$('exportTop').onclick=exportPNG;
+$('resetBtn').onclick=()=>{setPalette('violet');setTemplate('launch');uploadedImage=null;resizeCanvas('portrait');toast('Design reset')};
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));$('designTab').classList.toggle('active',b.dataset.tab==='design');$('aiTab').classList.toggle('active',b.dataset.tab==='ai')});
+document.querySelectorAll('.ai-hints button').forEach(b=>b.onclick=()=>$('aiPrompt').value=b.dataset.prompt);
+$('generateBtn').onclick=async()=>{const prompt=$('aiPrompt').value.trim();if(!prompt){$('aiStatus').textContent='Please describe the poster you want to create.';return}const btn=$('generateBtn');btn.disabled=true;btn.textContent='✦ Creating your design…';$('aiStatus').textContent='AI is building your design direction…';try{const res=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});const data=await res.json();if(!res.ok)throw new Error(data.error||'AI service is not configured yet.');if(data.business)$('business').value=data.business;if(data.headline)$('headline').value=data.headline;if(data.offer)$('offer').value=data.offer;if(data.contact)$('contact').value=data.contact;if(data.template&&presets[data.template]){template=data.template;document.querySelectorAll('.template-card').forEach(x=>x.classList.toggle('selected',x.dataset.template===template))}if(data.palette&&themes[data.palette])setPalette(data.palette);setTemplate(template);if(data.headline)layers[1].text=data.headline;if(data.offer)layers[2].text=data.offer;if(data.business)layers[0].text=data.business;if(data.contact)layers[3].text=data.contact;draw();$('aiStatus').textContent='Your AI design direction is ready. Fine-tune it in the editor.';toast('AI design generated')}catch(err){$('aiStatus').textContent=err.message+' Add OPENAI_API_KEY in Vercel project environment variables.'}finally{btn.disabled=false;btn.innerHTML='✦ Generate my design <span>→</span>'}};
+document.fonts.ready.then(()=>{setTemplate('launch');draw()});window.addEventListener('resize',updateOutline);
