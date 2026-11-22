@@ -1,78 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Create beautiful business promotional posters for free with PosterMaker AI.">
-<title>PosterMaker AI — Create Your Poster</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10111a"><meta name="description" content="PosterMaker AI — professional poster design studio for creators and businesses.">
+<title>PosterMaker AI — Design Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#"><span class="brand-mark">✦</span> PosterMaker <b>AI</b></a>
-  <nav><a href="#templates">Templates</a><a href="#editor">Poster Studio</a></nav>
-  <a class="top-cta" href="#editor">Create free <span>↗</span></a>
-</header>
-<main>
-<section class="hero">
-  <div class="hero-copy">
-    <div class="eyebrow"><span class="pulse"></span> YOUR CREATIVE STUDIO</div>
-    <h1>Make your business<br> <span>impossible to ignore.</span></h1>
-    <p>Create scroll-stopping promotional posters for your business in minutes. No design skills needed.</p>
-    <a class="primary-btn" href="#editor">Start designing <span>→</span></a>
-    <div class="hero-note"><span>✓</span> Free to use &nbsp; <span>✓</span> Instant PNG download</div>
-  </div>
-  <div class="hero-art">
-    <div class="float-card float-one"><span>✦</span> Made for your brand</div>
-    <div class="poster-stack back-poster"><div>BIG<br>SALE</div><small>THIS WEEK ONLY</small></div>
-    <div class="poster-stack front-poster"><div class="poster-sun">✳</div><small>YOUR BUSINESS</small><strong>MAKE<br>IT <i>HAPPEN.</i></strong><label>UP TO 50% OFF</label><div class="poster-foot">SHOP NOW ↗</div></div>
-    <div class="float-card float-two">✧ &nbsp; Design. Download. Share.</div>
-  </div>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="#"><span class="brand-icon">✳</span><span>PosterMaker<small>AI STUDIO</small></span></a>
+<div class="side-label">WORKSPACE</div>
+<a class="side-link active" href="#studio"><span>▦</span> Design studio</a>
+<a class="side-link" href="#templates"><span>◫</span> Templates <em>12</em></a>
+<div class="side-label side-gap">YOUR CREATIONS</div>
+<div class="project-mini"><span class="mini-thumb">✦</span><span><b>Untitled poster</b><small>Just now · Draft</small></span></div>
+<div class="sidebar-bottom"><div class="upgrade-card"><span class="spark">✦</span><b>Make something<br>remarkable.</b><p>Your ideas deserve great design.</p><a href="#studio">Start creating ↗</a></div><div class="profile"><div class="avatar">B</div><span><b>Business HQ</b><small>Free workspace</small></span><span class="dots">•••</span></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><button class="mobile-menu" id="menuBtn" aria-label="Toggle menu">☰</button><div class="crumb">Workspace <span>/</span> <b>Design studio</b></div><div class="top-actions"><span class="saved-status" id="saveStatus">● All changes saved</span><button class="btn btn-quiet" id="resetBtn">↶ Reset</button><button class="btn btn-primary" id="exportTop">↓ Export PNG</button></div></header>
+<section class="welcome" id="studio"><div><div class="overline"><span class="live-dot"></span> CREATIVE WORKSPACE</div><h1>Make it <span>unforgettable.</span></h1><p>Turn your next big idea into a scroll-stopping design.</p></div><div class="welcome-chip"><span>✦</span><div><b>Design smarter</b><small>Every pixel, your way.</small></div></div></section>
+<div class="editor-layout">
+<section class="tool-panel">
+<div class="panel-tabs"><button class="tab active" data-tab="design">✧ Design</button><button class="tab" data-tab="ai">✦ AI create</button></div>
+<div class="tab-content active" id="designTab">
+<div class="panel-section"><div class="section-title"><span class="step">01</span><div><b>Choose a template</b><small>Start with a professional layout</small></div></div>
+<div class="template-list" id="templateList">
+<button class="template-card selected" data-template="launch"><span class="template-art art-launch"><small>NEW COLLECTION</small><b>MAKE<br>YOUR<br><i>MOVE.</i></b><em>DISCOVER MORE ↗</em></span><span>Editorial launch</span></button>
+<button class="template-card" data-template="sale"><span class="template-art art-sale"><small>LIMITED OFFER</small><b>BIG<br>SALE<span>!</span></b><em>UP TO 50% OFF</em></span><span>Bold sale</span></button>
+<button class="template-card" data-template="food"><span class="template-art art-food"><small>FRESH • TASTY • LOCAL</small><b>GOOD<br>FOOD.<br><i>GOOD MOOD.</i></b><em>ORDER TODAY</em></span><span>Food & café</span></button>
+<button class="template-card" data-template="event"><span class="template-art art-event"><small>YOU'RE INVITED</small><b>THE<br>BIG<br><i>EVENT.</i></b><em>SAVE THE DATE</em></span><span>Event night</span></button>
+<button class="template-card" data-template="beauty"><span class="template-art art-beauty"><small>THE BEAUTY EDIT</small><b>GLOW<br>LIKE<br><i>NEVER.</i></b><em>SHOP THE EDIT</em></span><span>Beauty edit</span></button>
+<button class="template-card" data-template="tech"><span class="template-art art-tech"><small>THE FUTURE IS HERE</small><b>THINK<br><i>BEYOND.</i></b><em>EXPLORE NOW</em></span><span>Tech drop</span></button>
+</div></div>
+<div class="panel-section"><div class="section-title"><span class="step">02</span><div><b>Your content</b><small>Make the message yours</small></div></div>
+<label class="field-label">Brand / business<input id="business" maxlength="36" value="STUDIO NORTH"></label>
+<label class="field-label">Main headline<input id="headline" maxlength="48" value="MAKE YOUR MOVE."></label>
+<label class="field-label">Offer / supporting text<input id="offer" maxlength="42" value="THE NEW COLLECTION IS HERE"></label>
+<label class="field-label">Call to action<input id="contact" maxlength="42" value="DISCOVER MORE  ↗"></label>
+</div>
+<div class="panel-section"><div class="section-title"><span class="step">03</span><div><b>Color direction</b><small>Set the mood</small></div></div><div class="palette-row">
+<button class="palette selected" data-palette="violet" aria-label="Violet palette"><i></i></button><button class="palette" data-palette="sunset" aria-label="Sunset palette"><i></i></button><button class="palette" data-palette="ocean" aria-label="Ocean palette"><i></i></button><button class="palette" data-palette="earth" aria-label="Earth palette"><i></i></button><button class="palette" data-palette="mono" aria-label="Monochrome palette"><i></i></button>
+</div></div>
+<div class="panel-section"><div class="section-title"><span class="step">04</span><div><b>Add elements</b><small>Build your own composition</small></div></div><div class="add-actions"><button id="addText">＋ Add text</button><button id="addShape">◧ Add shape</button><label class="upload-btn">↑ Add image<input id="imageUpload" type="file" accept="image/*" hidden></label></div></div>
+</div>
+<div class="tab-content" id="aiTab"><div class="ai-intro"><div class="ai-orb">✦</div><h2>Dream it. <span>Design it.</span></h2><p>Describe your campaign and let AI create a tailored poster direction.</p></div><label class="field-label">What are you promoting?<textarea id="aiPrompt" rows="5" placeholder="e.g. A premium coffee shop opening offer. Warm, minimal, modern style. 20% off this weekend."></textarea></label><div class="ai-hints"><button data-prompt="Luxury fashion sale, black and cream editorial style">Luxury fashion</button><button data-prompt="Modern cafe opening, warm earthy colors">Cafe opening</button><button data-prompt="Energetic tech product launch, electric blue">Tech launch</button></div><button class="btn btn-primary ai-generate" id="generateBtn">✦ Generate my design <span>→</span></button><p class="ai-note" id="aiStatus">AI generation uses your secure server configuration.</p></div>
 </section>
-<section class="features"><div><b>✧</b><span>Ready-made templates</span></div><div><b>◈</b><span>Live poster preview</span></div><div><b>↧</b><span>High-quality PNG</span></div><div><b>♡</b><span>Made for small business</span></div></section>
-<section class="studio" id="editor">
-  <div class="section-heading"><div><div class="eyebrow">THE POSTER STUDIO</div><h2>Your idea. Your poster.</h2></div><p>Customize the details and watch your design come to life.</p></div>
-  <div class="workspace">
-    <aside class="controls">
-      <div class="control-title"><span>01</span> Choose a style</div>
-      <div class="template-grid" id="templateGrid">
-        <button class="template active" data-template="sale"><span class="thumb sale-thumb">BIG<br>SALE</span><small>Bold Sale</small></button>
-        <button class="template" data-template="food"><span class="thumb food-thumb">TASTY<br>DEAL</span><small>Food Offer</small></button>
-        <button class="template" data-template="fashion"><span class="thumb fashion-thumb">NEW<br>DROP</span><small>Fashion</small></button>
-        <button class="template" data-template="event"><span class="thumb event-thumb">YOU’RE<br>INVITED</span><small>Event</small></button>
-        <button class="template" data-template="minimal"><span class="thumb minimal-thumb">LESS<br>IS MORE</span><small>Minimal</small></button>
-        <button class="template" data-template="arrival"><span class="thumb arrival-thumb">JUST<br>IN</span><small>New Arrival</small></button>
-        <button class="template" data-template="festival"><span class="thumb festival-thumb">HAPPY<br>FEST</span><small>Festival</small></button>
-        <button class="template" data-template="property"><span class="thumb property-thumb">FIND<br>HOME</span><small>Property</small></button>
-        <button class="template" data-template="beauty"><span class="thumb beauty-thumb">GLOW<br>UP</span><small>Beauty</small></button>
-        <button class="template" data-template="tech"><span class="thumb tech-thumb">NEXT<br>LEVEL</span><small>Tech</small></button>
-      </div>
-      <div class="control-title"><span>02</span> Add your details</div>
-      <label>Business name<input id="business" maxlength="32" value="YOUR BUSINESS" placeholder="e.g. Sharma Store"></label>
-      <label>Main headline<input id="headline" maxlength="38" value="BIG SALE" placeholder="e.g. Summer Sale"></label>
-      <label>Offer / subtitle<input id="offer" maxlength="42" value="UP TO 50% OFF" placeholder="e.g. Buy 1 Get 1"></label>
-      <label>Contact / website<input id="contact" maxlength="34" value="VISIT US TODAY" placeholder="Phone or website"></label>
-      <div class="control-title"><span>03</span> Pick your colors</div>
-      <div class="colors">
-        <button class="swatch selected" data-color="sunset" aria-label="Sunset colors"></button>
-        <button class="swatch" data-color="ocean" aria-label="Ocean colors"></button>
-        <button class="swatch" data-color="berry" aria-label="Berry colors"></button>
-        <button class="swatch" data-color="forest" aria-label="Forest colors"></button>
-        <button class="swatch" data-color="mono" aria-label="Monochrome colors"></button>
-      </div>
-      <button class="download-btn" id="downloadBtn">↓ &nbsp; Download poster PNG</button>
-      <p class="privacy-note">Your design is created in your browser. No account needed.</p>
-    </aside>
-    <div class="preview-area">
-      <div class="preview-top"><span><i></i> LIVE PREVIEW</span><span>1080 × 1350 px</span></div>
-      <div class="canvas-wrap"><canvas id="poster" width="1080" height="1350" aria-label="Live poster preview"></canvas></div>
-      <div class="preview-bottom"><span>✦ Your next great promotion starts here.</span><button id="shareBtn">Share ↗</button></div>
-    </div>
-  </div>
-</section>
-<section class="closing"><div class="eyebrow">READY WHEN YOU ARE</div><h2>Good design gets<br><span>good things noticed.</span></h2><a class="primary-btn" href="#editor">Create your poster →</a></section>
-</main>
-<footer><a class="brand" href="#"><span class="brand-mark">✦</span> PosterMaker <b>AI</b></a><span>Made for ambitious small businesses.</span><span>© 2026 PosterMaker AI</span></footer>
+<section class="canvas-panel"><div class="canvas-toolbar"><div><b>Untitled design</b><small>Instagram portrait · 1080 × 1350</small></div><div class="canvas-tools"><button id="zoomOut" aria-label="Zoom out">−</button><span id="zoomValue">Fit</span><button id="zoomIn" aria-label="Zoom in">＋</button><button id="gridToggle" title="Toggle grid">▦</button></div></div>
+<div class="stage" id="stage"><div class="poster-frame" id="posterFrame"><canvas id="poster" width="1080" height="1350"></canvas><div class="grid-overlay" id="gridOverlay"></div><div class="selection-outline" id="selectionOutline"></div></div></div>
+<div class="canvas-footer"><span><i class="live-dot"></i> LIVE CANVAS</span><span>Drag text to reposition · Select to edit</span></div></section>
+<aside class="properties-panel"><div class="properties-head"><b>Properties</b><span id="selectedType">CANVAS</span></div>
+<div id="canvasProperties"><div class="property-group"><label>Canvas size</label><div class="size-pills"><button class="active">Portrait</button><button id="squareSize">Square</button><button id="storySize">Story</button></div></div><div class="property-group"><label>Background</label><div class="color-input-row"><input type="color" id="bgColor" value="#17152b"><span>Background color</span></div></div><div class="property-tip">Select any text or shape on your poster to edit its properties.</div></div>
+<div id="objectProperties" hidden><div class="property-group"><label>Text content</label><textarea id="layerText" rows="3"></textarea></div><div class="property-group"><label>Font family</label><select id="fontFamily"><option value="Poppins">Poppins</option><option value="DM Sans">DM Sans</option><option value="Georgia">Georgia</option><option value="Arial">Arial</option></select></div><div class="property-group"><label>Font size <b id="fontSizeLabel">72 px</b></label><input type="range" id="fontSize" min="18" max="180" value="72"></div><div class="property-group"><label>Text color</label><div class="color-input-row"><input type="color" id="textColor" value="#ffffff"><span>Fill color</span></div></div><div class="property-group"><label>Alignment</label><div class="align-pills"><button data-align="left">≡</button><button data-align="center" class="active">☰</button><button data-align="right">≡</button></div></div><div class="property-group"><label>Position</label><div class="position-row"><input type="number" id="posX" aria-label="X position"><input type="number" id="posY" aria-label="Y position"></div></div><button class="delete-layer" id="deleteLayer">⌫ Delete selected layer</button></div>
+</aside>
+</div>
+<div class="bottom-note"><span>✦</span> Crafted for creators, entrepreneurs and ambitious brands.</div>
+</main></div>
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body></html>
