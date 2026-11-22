@@ -33,7 +33,7 @@ document.querySelectorAll('[data-align]').forEach(b=>b.onclick=()=>changeSelecte
 $('deleteLayer').onclick=()=>{if(selected<0)return;layers.splice(selected,1);selected=-1;draw();syncProperties();toast('Layer deleted')};
 $('bgColor').oninput=e=>{themes[palette].bg=e.target.value;draw()};
 function resizeCanvas(r){ratio=r;canvas.width=1080;canvas.height=r==='square'?1080:r==='story'?1920:1350;frame.style.aspectRatio=canvas.width+'/'+canvas.height;draw();toast('Canvas size updated')}
-$('squareSize').onclick=()=>resizeCanvas('square');$('storySize').onclick=()=>resizeCanvas('story');document.querySelectorAll('.size-pills button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.size-pills button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
+$('portraitSize').onclick=()=>resizeCanvas('portrait');$('squareSize').onclick=()=>resizeCanvas('square');$('storySize').onclick=()=>resizeCanvas('story');document.querySelectorAll('.size-pills button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.size-pills button').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 $('gridToggle').onclick=()=>$('gridOverlay').classList.toggle('show');
 $('zoomIn').onclick=()=>{zoom=Math.min(1.35,zoom+.1);frame.style.width=(Math.min(390,stage.clientWidth-30)*zoom)+'px';$('zoomValue').textContent=Math.round(zoom*100)+'%'};
 $('zoomOut').onclick=()=>{zoom=Math.max(.55,zoom-.1);frame.style.width=(Math.min(390,stage.clientWidth-30)*zoom)+'px';$('zoomValue').textContent=Math.round(zoom*100)+'%'};
