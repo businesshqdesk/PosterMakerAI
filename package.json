@@ -1,0 +1,7 @@
+{
+  "name": "postermaker-ai",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Premium AI-assisted poster design studio",
+  "scripts": { "dev": "vercel dev" }
+}
