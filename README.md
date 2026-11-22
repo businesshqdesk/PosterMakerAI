@@ -1,35 +1,35 @@
 # PosterMaker AI Studio
 
-A responsive browser-based poster editor for creating promotional designs.
+A responsive poster-design studio with editable canvas layers and AI-assisted poster copy.
 
-## Current features
-- Premium Poppins-based dark studio interface
-- Six editable poster starting layouts
-- Editable text layers, font size, weight and colour
-- Add heading and subheading layers
-- Upload PNG, JPG and WEBP images
-- Drag text, shape and image layers on the canvas
-- Layer selection and deletion
-- Canvas background and preset palettes
-- Portrait, square and story canvas sizes
+## Features
+- Premium dark studio interface with Poppins typography
+- Six art-directed starting layouts: launch, sale, food, event, beauty and tech
+- Editable text, font family, size, alignment, colour and position
+- Add text and shape layers
+- Upload images as movable canvas layers
+- Drag layers on the canvas and delete selected layers
+- Colour palettes and custom canvas background
+- Portrait, square and story canvas formats
 - High-resolution PNG export
-- Browser-local editing; no account required
+- AI-assisted poster copy and layout direction through a secure Vercel API route
 
 ## Run locally
-Open `index.html` in a modern browser or serve this folder with a static web server.
+Open `index.html` for the static editor. The AI endpoint requires Vercel Functions; use `npm run dev` with the Vercel CLI to test it locally.
 
 ## Deploy on Vercel
-1. Import this GitHub repository into Vercel.
-2. Select the framework preset **Other**.
-3. Leave Build Command and Output Directory empty (static site).
-4. Deploy.
+1. Import `businesshqdesk/PosterMakerAI` into Vercel.
+2. Use the **Other** framework preset.
+3. Keep the project root as the repository root and deploy.
+4. In Vercel Project Settings → Environment Variables, add `OPENAI_API_KEY`.
+5. Redeploy after adding the variable.
 
-## Important
-The AI generation panel is currently a clearly marked integration placeholder. Actual AI image generation requires an image-generation provider and a server-side API key. Do not put secret API keys in browser JavaScript.
+## AI scope
+The current AI endpoint generates poster copy and recommends one of the built-in templates and palettes. It does not yet generate a new photographic background or finished image. The API key is read server-side and must never be placed in browser JavaScript.
 
-## Roadmap
-- Undo/redo and project persistence
-- Background removal and image crop tools
-- More professionally art-directed templates
-- Secure AI generation API integration
-- Automated browser and mobile testing
+## Next development milestones
+- True AI image generation and generated-background placement
+- Undo/redo and autosaved projects
+- Crop, image opacity and layer resizing handles
+- More category-specific premium templates
+- Browser-based automated and real-device mobile testing
